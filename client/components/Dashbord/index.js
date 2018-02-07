@@ -10,8 +10,7 @@ export default class Dashbord extends Component{
   render() {
     const { visible } = this.state
     return (
-      <div>
-        <Container fluid>
+        <Container fluid style={{background:'#ce9ffc'}}>
           <Sidebar.Pushable>
             <Sidebar as={Menu} animation='scale down' width='thin' visible={visible} icon='labeled' vertical inverted>
               <Menu.Item name='home'>
@@ -32,7 +31,6 @@ export default class Dashbord extends Component{
             </Sidebar.Pusher>
           </Sidebar.Pushable>
         </Container>
-      </div>
     )
   }
 }
