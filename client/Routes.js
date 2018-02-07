@@ -3,10 +3,10 @@ import App from './App';
 import Dashbord from './components/Dashbord';
 import LoginForm from './components/LoginForm';
 import Appbar from './components/Appbar'
-
-import { Switch, Route, IndexRoute } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 export default class Routes extends Component{
+
   render(){
     return(
       <div>

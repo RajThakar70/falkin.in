@@ -1,4 +1,5 @@
 import React from 'react';
+import './assets/css/index.css'
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
 import Routes from './Routes';
