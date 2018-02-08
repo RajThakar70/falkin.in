@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Button, Grid, Transition,Card } from 'semantic-ui-react';
+import { Form, Segment, Button, Grid, Transition } from 'semantic-ui-react';
 
 export default class LoginForm extends Component{
 
@@ -16,21 +16,21 @@ export default class LoginForm extends Component{
   render(){
     return(
       <div>
-        <Transition animation={"fade"} duration={1000} visible={this.state.visible}>
-          <Segment style={{background:"linear-gradient(135deg, #615180 0%,#5e2563 100%)"}} vertical>
-            <Grid style={{height:500}} verticalAlign='middle' centered columns={3}>
-              <Grid.Row stretched>
-                <Grid.Column>
+        <Segment style={{background:"linear-gradient(135deg, #615180 0%,#5e2563 100%)"}} vertical>
+          <Grid style={{height:500}} verticalAlign='middle' centered columns={3}>
+            <Grid.Row stretched>
+              <Grid.Column>
+                <Transition animation={"fade"} duration={1000} visible={this.state.visible}>
                   <Form inverted>
                     <Form.Input icon="user" iconPosition="left" fluid label='User Name' placeholder='User Name' />
                     <Form.Input icon='lock' iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
                     <Button onClick={()=>this.toggleVisibility()} floated='right' inverted fluid color='green'>Login</Button>
                   </Form>
+                </Transition>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-          </Segment>
-        </Transition>
+        </Segment>
       </div>
     )
   }

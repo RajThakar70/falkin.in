@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
-import { Menu, Segment, Sticky, Button, Grid } from 'semantic-ui-react';
-import logo from 'semantic-ui-css/semantic.min.css'
+import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export default class Appbar extends Component{
@@ -15,10 +14,9 @@ export default class Appbar extends Component{
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
   };
-  handleContextRef = contextRef => this.setState({ contextRef });
 
   render(){
-    const { contextRef, activeItem } = this.state;
+    const { activeItem } = this.state;
     return(
       <div style={{marginBottom:43}}>
         <Menu inverted pointing secondary fixed="top" size='large' borderless style={{background:"#1b1c1d"}} >

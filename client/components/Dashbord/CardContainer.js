@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Sidebar, Segment, Button, Image, Icon, Header } from 'semantic-ui-react'
+import { Grid, Segment, Image, Icon, Header } from 'semantic-ui-react'
 
 export default class CardContainer extends Component{
   render(){

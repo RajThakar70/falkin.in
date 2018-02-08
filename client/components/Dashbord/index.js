@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Container } from 'semantic-ui-react'
+import { Sidebar, Menu, Icon, Container } from 'semantic-ui-react';
 import CardContainer from './CardContainer';
 
 export default class Dashbord extends Component{
