@@ -18,7 +18,7 @@ export default class Appbar extends Component{
   render(){
     const { activeItem } = this.state;
     return(
-      <div style={{marginBottom:43}}>
+      <div style={{paddingBottom:43}}>
         <Menu inverted pointing secondary fixed="top" size='large' borderless style={{background:"#1b1c1d"}} >
           <Menu.Menu position='right'>
             <Menu.Item as={Link} to='/home' name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
