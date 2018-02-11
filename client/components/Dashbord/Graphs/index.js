@@ -8,6 +8,7 @@ import data from './data.json'
 
 export default class Graph extends Component {
 
+
   handelGraph = (type,data) => {
     switch (type) {
       case 'Linechart':
@@ -17,13 +18,14 @@ export default class Graph extends Component {
       case 'Areachart':
         return <Areachart data={data}/>
       case 'Piechart':
-        return <Piechart data={data}/>
+        return <Piechart/>
       default:
       return <Linechart data={data}/>
     }
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="ui segment" style={{background:'#292d31',height:500}}>
         {this.handelGraph(this.props.graph,data)}

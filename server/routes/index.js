@@ -1,25 +1,31 @@
 const router = require('koa-router')()
+const data = require('./datas.json');
+const dataPie = [
+                  {name: 'January', value: 400}, {name: 'February', value: 300},
+                  {name: 'March', value: 300}, {name: 'April', value: 200},
+                  {name: 'May', value: 278}, {name: 'June', value: 189},
+                  {name: 'July', value: 400}, {name: 'August', value: 300},
+                  {name: 'Septmber', value: 300}, {name: 'October', value: 200},
+                  {name: 'November', value: 278}, {name: 'December', value: 189}];
 
 router.get('/visitor-count', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+  ctx.body = data;
 });
 
 router.get('/sessions', async (ctx, next) => {
-  ctx.body = 'koa2 string'
+  ctx.body = dataPie
 })
 
-router.get('weekday-weekend', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
+router.get('/weekday-weekend', async (ctx, next) => {
+  ctx.body = data;
 })
 
-router.get('average-visitor', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
+router.get('/average-visitor', async (ctx, next) => {
+  ctx.body = data;
+})
+
+router.get('/average-session-duration', async (ctx, next) => {
+  ctx.body = data;
 })
 
 module.exports = router
