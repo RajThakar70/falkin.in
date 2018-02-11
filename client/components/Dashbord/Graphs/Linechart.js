@@ -3,8 +3,6 @@ import {
   LineChart,
   Line,
   Legend,
-  AreaChart,
-  Area,
   Brush,
   XAxis,
   YAxis,

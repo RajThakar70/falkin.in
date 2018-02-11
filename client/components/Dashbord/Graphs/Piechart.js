@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import {
-  PieChart, Pie, Legend, Tooltip,Cell,LabelList,Label,
+  PieChart,
+  Pie,
+  Legend,
+  Tooltip,
+  Cell,
+  Label,
   ResponsiveContainer
 } from 'recharts';
 
 const data01 = [
-  {name: 'January', value: 400}, {name: 'February', value: 300},
+                  {name: 'January', value: 400}, {name: 'February', value: 300},
                   {name: 'March', value: 300}, {name: 'April', value: 200},
                   {name: 'May', value: 278}, {name: 'June', value: 189},
                   {name: 'July', value: 400}, {name: 'August', value: 300},
@@ -34,11 +39,11 @@ export default class Piechart extends Component{
     return(
       <ResponsiveContainer width='100%' minHeight={400}>
         <PieChart>
-          <Pie nameKey="name" data={data01} innerRadius={50} outerRadius={170} fill="#ffffff" legendType="line" label labelLine={false}>
-            {data01.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+          <Pie data={data01} dataKey="value" innerRadius={20} outerRadius={100} fill="#ffffff" label labelLine={false}>
+            {data01.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
             <Label value="SOME DATA" position="outside" />
           </Pie>
-          <Legend verticalAlign="top" height={40} iconType='circle' onMouseOver={(data)=>console.log(data)}/>
+          <Legend verticalAlign="top" height={40} iconType='circle'/>
           <Tooltip animationEasing='ease' wrapperStyle={{background:'#393e44'}} labelStyle={{color: '#ff9801'}}/>
         </PieChart>
       </ResponsiveContainer>

@@ -1,35 +1,42 @@
 import React, { Component } from 'react';
-import { Form, Segment, Button, Grid, Transition } from 'semantic-ui-react';
+import { Form, Button, Grid, Container, Segment } from 'semantic-ui-react';
 
 export default class LoginForm extends Component{
 
-  state={
-    visible:false
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
   }
 
-  componentDidMount(){
-    this.setState({visible:true})
+  handelSubmit = (e) =>{
+    e.preventDefault();
+    alert(this.state.username+" "+this.state.password)
   }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  handelChange = (event) => {
+    console.log(event.target)
+    event.target.id === "username" ? (this.setState({username:event.target.value})):(this.setState({password:event.target.value}))
+
+  }
 
   render(){
     return(
-      <div>
-        <Segment style={{background:"linear-gradient(135deg, #615180 0%,#5e2563 100%)"}} vertical>
-          <Grid style={{height:500}} verticalAlign='middle' centered columns={3}>
-            <Grid.Row stretched>
-              <Grid.Column>
-                <Form inverted>
-                  <Form.Input icon="user" iconPosition="left" fluid label='User Name' placeholder='User Name' />
-                  <Form.Input icon='lock' iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
-                  <Button onClick={()=>this.toggleVisibility()} floated='right' inverted fluid color='green'>Login</Button>
-                </Form>
-              </Grid.Column>
-              </Grid.Row>
-            </Grid>
-        </Segment>
-      </div>
+      <Segment inverted>
+        <Grid centered relaxed>
+          <Grid.Row mobile={16}>
+            <Grid.Column mobile={10} tablet={8} computer={6}>
+              <Form inverted style={{marginTop:200,marginBottom:200}}>
+                <Form.Input id="username" icon="user" value={this.state.username} onChange={this.handelChange} iconPosition="left" fluid label='User Name' placeholder='User Name' />
+                <Form.Input id="password" icon='lock' value={this.state.password} onChange={this.handelChange} iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
+                <Button type='submit' onClick={(e)=>this.handelSubmit(e)} floated='right' inverted fluid color='green'>Login</Button>
+              </Form>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     )
   }
 }

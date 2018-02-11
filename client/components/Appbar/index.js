@@ -7,7 +7,7 @@ export default class Appbar extends Component{
   constructor(props){
     super(props);
     this.state = {
-      activeItem: 'home',
+      activeItem: window.location.pathname,
     };
   }
 
@@ -18,14 +18,14 @@ export default class Appbar extends Component{
   render(){
     const { activeItem } = this.state;
     return(
-      <div style={{paddingBottom:43}}>
-        <Menu inverted pointing secondary fixed="top" size='large' borderless style={{background:"#1b1c1d"}} >
+      <div style={{marginBottom:40}}>
+        <Menu inverted pointing stackable secondary fixed="top" borderless style={{background:"#1b1c1d"}} >
           <Menu.Menu position='right'>
-            <Menu.Item as={Link} to='/home' name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/login' name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} >Products</Menu.Item>
-            <Menu.Item as={Link} to='/dash-bord' name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} >About us</Menu.Item>
-            <Menu.Item as={Link} to='/logina' color="green" name='login' active={activeItem === 'login'} onClick={this.handleItemClick} >Log in</Menu.Item>
-          </Menu.Menu>
+            <Menu.Item as={Link} to='/home' name='/home' active={activeItem === '/home'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/products' name='/products' active={activeItem === '/products'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/about-us' name='/about-us' active={activeItem === '/about-us'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/login' name='/login' active={activeItem === '/login'} onClick={this.handleItemClick} />
+        </Menu.Menu>
         </Menu>
       </div>
     )

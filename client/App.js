@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Container } from 'semantic-ui-react';
+import Appbar from './components/Appbar';
+import Routes from './Routes';
+
 
 class App extends Component {
   constructor(){
@@ -9,8 +13,10 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{height:1000}}>
-      </div>
+      <Container fluid style={{margin:0,padding:0,backgroundColor:'black'}}>
+        <Appbar />
+        <Routes />
+      </Container>
     );
   }
 }
