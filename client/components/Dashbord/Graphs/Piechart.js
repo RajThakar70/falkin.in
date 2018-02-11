@@ -39,8 +39,8 @@ export default class Piechart extends Component{
     this.state={
       pieData:[]
     }
-    axios.get('http://localhost:3000/sessions').then((data)=>{
-      console.log(data.data)
+    axios.get(window.location.origin+'/sessions').then((data)=>{
+      console.log(window.location.href)
       if(data) return this.setState({pieData:[...data.data]});
     }).catch((error)=> {
     console.log(error);

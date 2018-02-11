@@ -5,6 +5,16 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const router = require('koa-router')()
+const send = require('koa-send')
+// const session = require('koa-session')
+// const passport = require('koa-passport')
+// Sessions
+// app.keys = ['falkin-people-counter']
+// app.use(session({}, app))
+//
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -24,6 +34,7 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
+
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -32,13 +43,19 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+
+app.use(async (ctx) => {
+  await send(ctx, 'index.html', { root: __dirname + '/public' });
+})
 
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
+
 
 module.exports = app

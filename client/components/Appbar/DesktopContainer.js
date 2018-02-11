@@ -22,6 +22,7 @@ export default class DesktopContainer extends Component {
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { children } = this.props
@@ -39,9 +40,9 @@ export default class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item as={Link} to="/" active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
-                <Menu.Item as={Link} to="/about-us" active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
-                <Menu.Item as={Link} to="/login" active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
+                <Menu.Item name='/' as={Link} to="/" active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
+                <Menu.Item name='/about-us' as={Link} to="/about-us" active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
+                <Menu.Item name='/login' as={Link} to="/login" active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
               </Container>
             </Menu>
             {window.location.pathname==='/'?<HomepageHeading />:null}
