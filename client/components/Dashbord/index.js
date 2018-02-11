@@ -6,7 +6,7 @@ export default class Dashbord extends Component{
 
   render() {
     return (
-        <Segment inverted>
+        <Segment inverted vertical>
           <CardContainer />
         </Segment>
     )

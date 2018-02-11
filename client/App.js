@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
 import Appbar from './components/Appbar';
+import { Footer } from './components/Footer';
 import Routes from './Routes';
 
 
@@ -13,9 +14,11 @@ class App extends Component {
 
   render() {
     return (
-      <Container fluid style={{margin:0,padding:0,backgroundColor:'black'}}>
-        <Appbar />
-        <Routes />
+      <Container fluid style={{margin:0,padding:0}}>
+        <Appbar>
+          <Routes />
+        </Appbar>
+        <Footer/>
       </Container>
     );
   }

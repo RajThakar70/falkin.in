@@ -11,6 +11,7 @@ export default class Routes extends Component{
         <Switch>
           <Route path='/login' component={LoginForm}/>
           <Route path='/dash-bord' component={Dashbord}/>
+          <Route path='/about-us' component={Home}/>
           <Route path='/' component={Home}/>
         </Switch>
     )
