@@ -17,26 +17,16 @@ export default class Contact extends Component{
         emailTouched: false,
         openModal: false
       }
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleEmailChange = this.handleEmailChange.bind(this)
-      this.disableSubmit = this.disableSubmit.bind(this)
-      this.validateForm = this.validateForm.bind(this)
-      this.handleBlur = this.handleBlur.bind(this)
     }
 
     handleSubmit = (e) => {
       e.preventDefault()
-      // this.setState({ openModal: true })
       this.open()
       let data = {'name': this.state.name, 'email': this.state.email, 'organisation': this.state.organisation, 'message': this.state.message}
       data.name = data.name.toUpperCase()
       data = JSON.stringify(data)
       axios.post('/api/contact', { data })
         .then(res => { console.log('Successfully contacted! : ') })
-      // fetch('/api/contact', {
-      //   method: 'POST',
-      //   body: data
-      // })
       this.setState({
         name: '',
         email: '',
@@ -46,43 +36,15 @@ export default class Contact extends Component{
     }
 
     handleChange = (event) => {
-      // console.log(this.state[event.target.name])
-      // console.log(this.state[event.target.name].length);
-      // console.log(this.state[event.target.name])
       this.setState({
         [event.target.name]: event.target.value
       })
-      // console.log(event.target.name, ': ', event.target.value)
-      // console.log(this.validateForm());
-      // console.log('after');
-      // console.log(this.state[event.target.name])
-      // console.log(this.state[event.target.name].length);
-      // console.log(this.state[event.target.name])
-      // console.log('==========');
-      this.disableSubmit()
-      // this.validateForm() ? this.setState({ disableSubmit: false }) : this.setState({ disableSubmit: true })
-      // if(this.validateForm())
-      //   this.setState({ disableSubmit: false })
-      // else
-      //   this.setState({ disableSubmit: false })
     }
 
     handleEmailChange = (event) => {
-      // console.log(event.target.name, ': ', event.target.value)
       this.setState({ email: event.target.value })
       this.state.email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/) ? this.setState({ validEmail: true }) : this.setState({ validEmail: false })
       this.disableSubmit()
-      // this.validateForm() ? this.setState({ disableSubmit: false }) : this.setState({ disableSubmit: true })
-
-      // if(this.state.email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/))
-      //   this.setState({ validEmail: true })
-      // else
-      //   this.setState({ validEmail: false })
-
-      // if(this.validateForm())
-      //   this.setState({ disableSubmit: false })
-      // else
-      //   this.setState({ disableSubmit: false })
     }
 
     handleBlur = (field) => (evt) => {
@@ -102,7 +64,6 @@ export default class Contact extends Component{
 
     validateForm = () => {
       return this.state.name.length > 0 && this.state.email.length > 0 && this.state.organisation.length > 0 && this.state.message.length > 0 && (this.state.validEmail)
-      // return this.state.email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
     }
 
     open = () => this.setState({ openModal: true })
@@ -110,13 +71,15 @@ export default class Contact extends Component{
 
     renderForm = () => {
       const markError = () => {
-        if(this.state.emailTouched)
+        // this.state.emailTouched ? ( this.state.validEmail ? false : true ) : false
+        if(this.state.emailTouched) {
           if(this.state.validEmail)
-            return true
-          else
             return false
+          else
+            return true
+        }
         else
-          return true
+          return false
       }
       return (
         <Segment>
@@ -130,12 +93,10 @@ export default class Contact extends Component{
               <Grid.Column mobile={10} tablet={8} computer={6}>
                 <Form onSubmit={(e) => this.handleSubmit(e)} success>
                   <Form.Input required name='name' icon='user' value={this.state.name} onChange={e => this.handleChange(e)} iconPosition='left' fluid label='Name' placeholder='Please enter your name' />
-                  <Form.Input required name='email' icon='at' className={markError() ? 'success': 'error'} onBlur={this.handleBlur('email')} value={this.state.email} onChange={e => this.handleEmailChange(e)} iconPosition='left' fluid label='E-mail' placeholder='Please enter your email address' />
-                  {/* {emailError && <Label basic color="red" pointing>{emailError}</Label>} */}
+                  <Form.Input required name='email' icon='at' className={markError() ? 'error': 'success'} onBlur={this.handleBlur('email')} value={this.state.email} onChange={e => this.handleEmailChange(e)} iconPosition='left' fluid label='E-mail' placeholder='Please enter your email address' />
                   <Form.Input required name='organisation' icon='building' value={this.state.organisation} onChange={e => this.handleChange(e)} iconPosition='left' fluid label='Organisation' placeholder='Please enter the name of your organisation' />
                   <Form.Input required name='message' icon='comment' value={this.state.message} onChange={e => this.handleChange(e)} iconPosition='left' fluid label='message' placeholder='Please state the reason...' />
                   <Button disabled={this.state.disableSubmit} type='submit' floated='right' inverted fluid color='green'>Send</Button>
-                  {/* <Message success header='Form Completed' content="You're all signed up for the newsletter" /> */}
                 </Form>
                 <Modal open={this.state.openModal} onClose={this.close}>
                   <Modal.Content>

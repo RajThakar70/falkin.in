@@ -43,6 +43,8 @@ export default class DesktopContainer extends Component {
                 <Menu.Item name='/' as={Link} to="/" active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
                 <Menu.Item name='/about-us' as={Link} to="/about-us" active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
                 <Menu.Item name='/contact' as={Link} to='/contact' active={activeItem === '/contact'} onClick={this.handleItemClick}>Contact</Menu.Item>
+                <Menu.Item name='/products' as={Link} to='/products' active={activeItem === '/products'} onClick={this.handleItemClick}>Products</Menu.Item>
+                <Menu.Item name='/devices' as={Link} to="/devices" active={activeItem === '/devices'} onClick={this.handleItemClick}>Devices</Menu.Item>
                 <Menu.Item name='/login' as={Link} to="/login" active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
               </Container>
             </Menu>

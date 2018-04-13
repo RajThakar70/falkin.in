@@ -33,6 +33,8 @@ export default class MobileContainer extends Component {
           <Sidebar as={Menu} onClick={this.handleToggle} animation='uncover' inverted vertical visible={sidebarOpened}>
             <Menu.Item as={Link} to="/" active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
             <Menu.Item as={Link} to="/about-us" active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
+            <Menu.Item as={Link} to="/contact" active={activeItem === '/contact'} onClick={this.handleItemClick}>contact</Menu.Item>
+            <Menu.Item as={Link} to="/products" active={activeItem === '/products'} onClick={this.handleItemClick}>products</Menu.Item>
             <Menu.Item as={Link} to="/login" active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
           </Sidebar>
 

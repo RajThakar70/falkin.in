@@ -21,7 +21,6 @@ const formSubmission = (ctx, next) => {
   console.log('okay');
   transporter.sendMail(mailOptions, (error, response) => {
       error ? console.log(error) : console.log('Message sent')
-      // smtpTransport.close(); // shut down the connection pool, no more messages. Comment this line out to continue sending emails.
   });
 }
 

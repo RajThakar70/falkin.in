@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Dashbord from './components/Dashbord';
+import Dashboard from './components/Dashboard';
 import LoginForm from './components/LoginForm';
 import Home from './components/Home'
 import Contact from './components/Contact'
+import Products from './components/Products'
+import Devices from './components/Devices'
 import { Switch, Route } from 'react-router-dom';
 
 export default class Routes extends Component{
@@ -14,23 +16,21 @@ export default class Routes extends Component{
     }
   }
 
-
-
   handleLogin = (state) => {
-    if(state.username==='admin'&&state.password=='admin'){
-      this.setState({isUserLogin:true})
-    }
-    return 'err';
+    this.setState({isUserLogin:true})
   }
-  render(){
-    console.log(this.state.isUserLogin);
+
+  render() {
+    // console.log(this.state.isUserLogin);
     const isUserLogin = this.state.isUserLogin;
     return(
         <Switch>
           <Route path='/login' render={()=><LoginForm isUserLogin={this.state.isUserLogin} handleLogin={this.handleLogin}/>}/>
-          <Route path='/dash-bord' component={Dashbord}/>
+          <Route path='/dash-board' component={Dashboard}/>
           <Route path='/about-us' component={Home}/>
           <Route path='/contact' component={Contact}/>
+          <Route path='/products' component={Products}/>
+          <Route path='/devices' component={Devices}/>
           <Route path='/' component={Home}/>
         </Switch>
     )
