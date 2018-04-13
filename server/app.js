@@ -1,23 +1,16 @@
 const Koa = require('koa')
 const CSRF = require('koa-csrf')
-const router = require('koa-router')()
 
 const app = new Koa()
 
-app.proxy = true
-
-//Routes
-const users = require('./routes/users')
-const index = require('./routes/index')
-
 //Error handler
 const onerror = require('koa-onerror')
-
 onerror(app)
+
+app.proxy = true
 
 //MongoDB connection
 const mongoose = require('mongoose')
-
 mongoose.Promise = global.Promise
 try{
   mongoose.connect('mongodb://master:d2Oanlu1rleB@ds237475.mlab.com:37475/counter?poolSize=10&retries=5')
@@ -29,7 +22,6 @@ try{
 const convert = require('koa-convert')
 const session = require('koa-generic-session')
 const MongoStore = require('koa-generic-session-mongo')
-
 app.keys = ['falkin-people-counter']
 app.use(convert(session({
   store: new MongoStore()
@@ -37,7 +29,6 @@ app.use(convert(session({
 
 //body parser
 const bodyparser = require('koa-bodyparser')
-
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
@@ -50,16 +41,9 @@ app.use(bodyparser({
 //   invalidTokenStatusCode: 403
 // }))
 
-// app.use((ctx, next) => {
-//   if (![ 'GET', 'POST' ].includes(ctx.method))
-//     return next();
-//   // if (ctx.method === 'GET' || ctx.method === 'POST') {
-//   //   ctx.body = ctx.csrf;
-//   //   return;
-//   // }
-//   ctx.body = 'OK';
-// })
-
+//Routes
+const users = require('./routes/users')
+const index = require('./routes/index')
 
 // middlewares - bodyparser
 const json = require('koa-json')
@@ -98,24 +82,11 @@ app.use(async (ctx) => {
 //Authentication
 require('./auth')
 const passport = require('koa-passport')
-
 app.use(passport.initialize())
 app.use(passport.session())
 
 const route = require('koa-route')
 
-// let custom =  route.post('/custom', function(ctx, next) {
-//   return passport.authenticate('local', function(user, info, status) {
-//     if (user === false) {
-//       ctx.status = 401
-//       ctx.body = { success: false }
-//     } else {
-//       ctx.body = { success: true }
-//       return ctx.login(user)
-//     }
-//   })(ctx, next)
-// })
-// console.log(custom);
 app.use(route.post('/custom', function(ctx, next) {
   return passport.authenticate('local', function(user, info, status) {
     if (user === false) {
@@ -128,30 +99,18 @@ app.use(route.post('/custom', function(ctx, next) {
   })(ctx, next)
 }))
 
-// let loginReq = route.post('/login', function(ctx) {
-//   passport.authenticate('local', {
-//     successRedirect: '/api/dash-board',
-//     failureRedirect: '/api/login'
-//   })
-// })
-// console.log(typeof loginReq);
-app.use(route.post('/login', function(ctx) {
-  console.log('login');
+app.use(route.post('/login',
   passport.authenticate('local', {
     successRedirect: '/api/dash-board',
     failureRedirect: '/api/login'
   })
-}))
+))
 
 app.use(route.get('/logout', (ctx) => {
   ctx.logout()
   ctx.redirect('/')
 }))
 
-app.use(route.get('/api/dash-board', (ctx) => {
-  console.log('dash')
-  ctx.redirect('/dash-board')
-}))
 
 app.use(route.get('/api/login', (ctx) => {
   console.log('login');
@@ -166,10 +125,11 @@ app.use((ctx, next) => {
   }
 })
 
-// error-handling
-// app.on('error', (err, ctx) => {
-//   console.error('server error', err, ctx)
-// });
+app.use(route.get('/api/dash-board', (ctx) => {
+  console.log('dash')
+  ctx.redirect('/dash-board')
+}))
+
 app.use((ctx, next) => {
   return next().catch(function (err) {
     ctx.status = err.status || 500;
