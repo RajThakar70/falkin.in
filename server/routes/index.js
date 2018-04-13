@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const contact = require('../controllers/contactForm')
 
 const Counter = mongoose.model('Counter', mongoose.Schema({}, { strict: false }))
+const Users = mongoose.model('User', mongoose.Schema({}, { strict: false }))
 
 // router.post('/custom', (ctx, next) => {
 //   console.log(ctx);
@@ -76,12 +77,20 @@ router.post('/api/contact', async (ctx, next) => {
   ctx.body = {cool: 'okay'}
 })
 
-router.get('/api/counter', async (ctx) => {
-  // console.log(ctx.request);
-  Counter.find({}, (err, docs) => {
-    console.log('total docs are: ', docs.length);
+router.post('/api/devices', async (ctx) => {
+  Users.find({username: ctx.request.header.name}, 'devices', (err, devices) => {
+    console.log('Devices are: ', devices);
+    ctx.body = devices
   })
-  ctx.body = {body: '/api/counter'}
+})
+
+router.post('/api/data', async (ctx) => {
+  console.log(ctx);
+  console.log(ctx.request.header.device);
+  Counter.find({username: ctx.request.header.name, device: ctx.request.header.device}, 'in out time', (err, data) => {
+    console.log('Gathered data: ', data);
+    ctx.body = data
+  })
 })
 
 
