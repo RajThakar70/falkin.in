@@ -1,8 +1,8 @@
-const passport = require('koa-passport')
+const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose')
 
-// const User =  mongoose.model('User', mongoose.Schema({}, { strict: false }))
+const Users = require('./models/users')
 
 passport.serializeUser(function(user, done) {
   console.log(user);
@@ -15,9 +15,15 @@ passport.deserializeUser(function(id, done) {
 })
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  console.log(User.findById(id, done));
-  User.findOne({ username: username, password: password }, done);
+  // console.log('LocalStrategy');
+  Users.findOne({ username: username, password: password }, function(err, user) {
+    if(err) { return done(err) }
+    if(!user) { return done(null, false, { message: 'Authentication failed.' }) }
+    return done(null, user)
+  })
 }))
+
+module.exports = passport
 
 // passport.deserializeUser( async (id, done) => {
 //   done(null, user)

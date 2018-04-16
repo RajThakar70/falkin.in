@@ -15,15 +15,12 @@ export default class LoginForm extends Component{
 
   handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(this.state);
-    const data = this.state
-    console.log(data);
     axios
-      .post('/login', { data })
+      .post('/login', { username: this.state.username, password: this.state.password })
       .then(res => {
-        console.log(res);
-        // this.props.handleLogin(this.state);
-        console.log('Successfully logged in!')
+        // console.log(res);
+        this.props.handleLogin();
+        // console.log('Successfully logged in!')
       })
       .catch(err => {
         console.log(err.response);
@@ -31,7 +28,6 @@ export default class LoginForm extends Component{
   }
 
   handleChange = (event) => {
-    console.log(this.props.isUserLogin)
     event.target.name === "username" ? (this.setState({username:event.target.value})):(this.setState({password:event.target.value}))
 
   }
@@ -47,7 +43,7 @@ export default class LoginForm extends Component{
             <Grid.Row>
               <Grid.Column mobile={10} tablet={8} computer={6}>
                 <Form onSubmit={(e) => this.handleSubmit(e)} inverted>
-                  <Form.Input type='hidden' name='_csrf'/>
+                  {/* <Form.Input type='hidden' name='_csrf'/> */}
                   <Form.Input name="username" icon="user" value={this.state.username} onChange={this.handleChange} iconPosition="left" fluid label='User Name' placeholder='User Name' />
                   <Form.Input name="password" icon='lock' value={this.state.password} onChange={this.handleChange} iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
                   <Button type='submit' floated='right' inverted fluid color='green'>Login</Button>
