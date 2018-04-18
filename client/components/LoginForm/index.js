@@ -19,7 +19,8 @@ export default class LoginForm extends Component{
       .post('/login', { username: this.state.username, password: this.state.password })
       .then(res => {
         // console.log(res);
-        this.props.handleLogin();
+        this.props.handleLogin(this.state.username)
+        if(res.status == 200) { this.props.handleLogin(this.state.username) }
         // console.log('Successfully logged in!')
       })
       .catch(err => {
@@ -38,7 +39,7 @@ export default class LoginForm extends Component{
     return(
       <Segment vertical inverted>
         {this.props.isUserLogin?
-          (<Redirect from='/login' to='/dash-board'/>):
+          (<Redirect from='/login' to='/devices'/>):
           (<Grid centered>
             <Grid.Row>
               <Grid.Column mobile={10} tablet={8} computer={6}>

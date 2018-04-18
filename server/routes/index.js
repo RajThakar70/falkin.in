@@ -7,8 +7,18 @@ const Users = require('../models/users')
 const Counter = require('../models/counter')
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  // console.log(req);
+  // console.log(req.user);
   // console.log(JSON.stringify(passport));
+  // const username = req.body.username
+  // const password = req.body.password
+  //
+  // Users.findOne({ username: username, password: password }, (err, user) => {
+  //   if(err) { return res.status(500).send() }
+  //   if(!user) { return res.status(404).send() }
+  //   console.log(req.session.user);
+  //   req.session.user = user
+  // })
+  // return res.status(200).send()
   res.send('logged in')
 })
 
@@ -16,14 +26,14 @@ router.post('/api/contact', (req, res) => {
   contact(req.body.data)
 })
 
-router.post('/api/devices', (req, res) => {
-  Users.find({username: "adityapsvs"}, 'devices', (err, devices) => {
-    console.log('Devices are: ', devices);
-    if(err)
-      res.json({ err })
-    else
-      res.json({ devices })
-  })
+router.get('/api/devices', (req, res) => {
+  if(req.session.passport) {
+    Users.findById(req.session.passport.user, 'username devices', (err, data) => {
+      err ? res.json({ err }) : res.json({ data })
+    })
+  } else {
+    res.status(401).send()
+  }
 })
 
 router.post('/api/data', (req, res) => {

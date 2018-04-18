@@ -12,12 +12,16 @@ export default class Routes extends Component{
   constructor(props){
     super(props)
     this.state = {
-      isUserLogin:false
+      isUserLogin: false,
+      username: ''
     }
   }
 
-  handleLogin = () => {
-    this.setState({isUserLogin:true})
+  handleLogin = (username) => {
+    this.setState({
+      isUserLogin: true,
+      username: username
+    })
   }
 
   render() {
@@ -26,11 +30,11 @@ export default class Routes extends Component{
     return(
         <Switch>
           <Route path='/login' render={()=><LoginForm isUserLogin={this.state.isUserLogin} handleLogin={this.handleLogin}/>}/>
-          <Route path='/dash-board' render={()=><Dashboard isUserLogin={this.state.isUserLogin}/>}/>
+          {/* <Route path='/dash-board' component={Dashboard}/> */}
           <Route path='/about-us' component={Home}/>
           <Route path='/contact' component={Contact}/>
           <Route path='/products' component={Products}/>
-          <Route path='/devices' component={Devices}/>
+          <Route path='/devices' render={()=><Devices username={this.state.username}/>}/>
           <Route path='/' component={Home}/>
         </Switch>
     )

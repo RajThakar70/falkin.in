@@ -1,4 +1,7 @@
 const express = require('express')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const errorhandler = require('errorhandler')
 const mongoose = require('mongoose')
@@ -6,7 +9,6 @@ const morgan = require('morgan')
 const path = require('path')
 const passport = require('passport')
 const index = require('./routes/index')
-const session = require('express-session')
 
 const app = express()
 
@@ -21,6 +23,8 @@ try{
 
 app.use(morgan('combined'))
 
+app.use(cookieParser())
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -29,9 +33,21 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.set('view engine', 'pug')
 
-require('./auth')
+app.use(session({
+  secret: 'falkin-dev',
+  saveUninitialized: false,
+  resave: false,
+  cookie: { maxAge: 300000 },
+  store: new MongoStore({
+    host: '127.0.0.1',
+    port: '27017',
+    db: 'session',
+    url: 'mongodb://master:d2Oanlu1rleB@ds237475.mlab.com:37475/counter'
+  })
+ }))
 app.use(passport.initialize())
 app.use(passport.session())
+require('./auth')
 
 app.use('/', index)
 

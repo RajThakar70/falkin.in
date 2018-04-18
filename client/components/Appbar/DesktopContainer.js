@@ -44,12 +44,12 @@ export default class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item className="DesktopMenu" name='/' as={Link} to="/" color={activeItem === '/' ? "blue":"none"} active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
-                <Menu.Item className="DesktopMenu" name='/about-us' as={Link} to="/about-us" color={activeItem === '/about-us' ? "blue":"none"} active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
-                <Menu.Item className="DesktopMenu" name='/contact' as={Link} to='/contact' color={activeItem === '/contact' ? "blue":"none"} active={activeItem === '/contact'} onClick={this.handleItemClick}>Contact</Menu.Item>
-                <Menu.Item className="DesktopMenu" name='/products' as={Link} to='/products' color={activeItem === '/products' ? "blue":"none"} active={activeItem === '/products'} onClick={this.handleItemClick}>Products</Menu.Item>
-                <Menu.Item className="DesktopMenu" name='/devices' as={Link} to="/devices"color={activeItem === '/devices' ? "blue":"none"}  active={activeItem === '/devices'} onClick={this.handleItemClick}>Devices</Menu.Item>
-                <Menu.Item className="DesktopMenu" name='/login' as={Link} to="/login" color={activeItem === '/login' ? "blue":"none"} active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/' as={Link} to="/" color={activeItem === '/' ? "blue":"black"} active={activeItem === '/'} onClick={this.handleItemClick}>Home</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/about-us' as={Link} to="/about-us" color={activeItem === '/about-us' ? "blue":"black"} active={activeItem === '/about-us'} onClick={this.handleItemClick}>About us</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/contact' as={Link} to='/contact' color={activeItem === '/contact' ? "blue":"black"} active={activeItem === '/contact'} onClick={this.handleItemClick}>Contact</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/products' as={Link} to='/products' color={activeItem === '/products' ? "blue":"black"} active={activeItem === '/products'} onClick={this.handleItemClick}>Products</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/devices' as={Link} to="/devices"color={activeItem === '/devices' ? "blue":"black"}  active={activeItem === '/devices'} onClick={this.handleItemClick}>Devices</Menu.Item>
+                <Menu.Item className="DesktopMenu" name='/login' as={Link} to="/login" color={activeItem === '/login' ? "blue":"black"} active={activeItem === '/login'} position='right' onClick={this.handleItemClick}>Log in</Menu.Item>
               </Container>
             </Menu>
             {window.location.pathname==='/'?<HomepageHeading />:null}

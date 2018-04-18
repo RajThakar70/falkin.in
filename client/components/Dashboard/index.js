@@ -6,11 +6,11 @@ export default class Dashboard extends Component{
 
   constructor(props) {
     super(props)
-    console.log(props);
+    console.log(this.props.username);
+    console.log(this.props.device);
   }
 
   render() {
-    console.log("in"+this.props.isUserLogin);
     return (
         <Segment inverted vertical>
           <CardContainer />

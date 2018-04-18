@@ -5,13 +5,13 @@ const mongoose = require('mongoose')
 const Users = require('./models/users')
 
 passport.serializeUser(function(user, done) {
-  console.log(user);
-  done(null, user._id)
+  done(null, user.id)
 })
 
 passport.deserializeUser(function(id, done) {
-  console.log(User.findById(id, done));
-  User.findById(id, done);
+  Users.findById(id, function(err, user) {
+    done(err, user)
+  });
 })
 
 passport.use(new LocalStrategy(function(username, password, done) {
