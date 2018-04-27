@@ -12,14 +12,14 @@ export default class Areachart extends Component{
       <ResponsiveContainer width='100%' minHeight={400}>
         <AreaChart width={600} height={200} data={this.props.data}
           margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-          <XAxis dataKey="time.$date"/>
+          <XAxis dataKey="time"/>
           <YAxis/>
           <CartesianGrid vertical={false}/>
           <Legend verticalAlign="top" height={40} iconType='circle' onMouseOver={(data)=>console.log(data)}/>
           <Tooltip animationEasing='ease' wrapperStyle={{background:'#393e44'}} labelStyle={{color: '#ff9801'}}/>
           <Area name="People moved in" connectNulls={true} type='monotone' dataKey='in' stroke='#1ebea5' fill='#1ebea5' />
           <Area name="People moved out" connectNulls={true} type='monotone' dataKey='out' stroke='#c04dd8' fill='#c04dd8' />
-          <Brush startIndex={0} travellerWidth={10} endIndex={10}/>
+          <Brush travellerWidth={10}/>
         </AreaChart>
       </ResponsiveContainer>
 

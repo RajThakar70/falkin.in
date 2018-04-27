@@ -11,13 +11,13 @@ import {
 import axios from 'axios';
 
 
-// const data01 = [
-//                   {name: 'January', value: 400}, {name: 'February', value: 300},
-//                   {name: 'March', value: 300}, {name: 'April', value: 200},
-//                   {name: 'May', value: 278}, {name: 'June', value: 189},
-//                   {name: 'July', value: 400}, {name: 'August', value: 300},
-//                   {name: 'Septmber', value: 300}, {name: 'October', value: 200},
-//                   {name: 'November', value: 278}, {name: 'December', value: 189}]
+const data01 = [
+                  {name: 'January', value: 400}, {name: 'February', value: 300},
+                  {name: 'March', value: 300}, {name: 'April', value: 200},
+                  {name: 'May', value: 278}, {name: 'June', value: 189},
+                  {name: 'July', value: 400}, {name: 'August', value: 300},
+                  {name: 'Septmber', value: 300}, {name: 'October', value: 200},
+                  {name: 'November', value: 278}, {name: 'December', value: 189}]
 
 const COLORS = [
     "#d31b5b",

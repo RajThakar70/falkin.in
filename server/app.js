@@ -37,7 +37,7 @@ app.use(session({
   secret: 'falkin-dev',
   saveUninitialized: false,
   resave: false,
-  cookie: { maxAge: 300000 },
+  cookie: { maxAge: 900000 },
   store: new MongoStore({
     host: '127.0.0.1',
     port: '27017',

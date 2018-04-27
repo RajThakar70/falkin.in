@@ -36,14 +36,23 @@ router.get('/api/devices', (req, res) => {
   }
 })
 
-router.post('/api/data', (req, res) => {
-  Counter.find({username: "adityapsvs", device: "device3"}, 'in out time', (err, data) => {
-    console.log('Gathered data: ', data);
-    if(err)
-      res.json({ err })
-    else
-      res.json({ data })
-  })
+router.get('/api/data', (req, res) => {
+  console.log(req.query.username);
+  var username = req.query.username
+  if(req.session.passport) {
+    Counter.find({username: username, device: req.query.device}, 'in out time', (err, data) => {
+      if(err) {
+        console.log(err);
+        res.json({ err })
+      }
+      else {
+        console.log(data);
+        res.json({ data })
+      }
+    })
+  } else {
+    res.status(401).send()
+  }
 })
 
 module.exports = router

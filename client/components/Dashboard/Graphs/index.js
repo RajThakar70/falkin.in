@@ -25,10 +25,13 @@ export default class Graph extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props.graph);
+    console.log('data', data)
+    console.log('graphData', this.props.data);
+    console.log('----------------------------');
     return (
       <div className="ui segment" style={{background:'#292d31',height:500}}>
-        {this.handleGraph(this.props.graph,data)}
+        {this.handleGraph(this.props.graph, this.props.data)}
       </div>
     )
   }

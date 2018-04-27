@@ -30,7 +30,7 @@ export default class Routes extends Component{
     return(
         <Switch>
           <Route path='/login' render={()=><LoginForm isUserLogin={this.state.isUserLogin} handleLogin={this.handleLogin}/>}/>
-          {/* <Route path='/dash-board' component={Dashboard}/> */}
+          <Route path='/dash-board' component={Dashboard}/>
           <Route path='/about-us' component={Home}/>
           <Route path='/contact' component={Contact}/>
           <Route path='/products' component={Products}/>
