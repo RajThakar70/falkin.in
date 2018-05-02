@@ -12,6 +12,9 @@ export default class Devices extends Component {
       username: this.props.username,
       devices: []
     }
+  }
+
+  componentWillMount() {
     axios
       .get('/api/devices', {
         params: {
@@ -19,12 +22,19 @@ export default class Devices extends Component {
         }
       })
       .then(res => {
-        this.setState({
-          username: res.data.data.username,
-          devices: res.data.data.devices
-        })
+        if (res.status != 401) {
+          if(res.err)
+            console.log('Error while retrieving: ', res.err)
+          else {
+            this.setState({
+              username: res.data.data.username,
+              devices: res.data.data.devices
+            })
+          }
+        } else {
+          console.log('Unauthorized!');
+        }
       })
-      .catch(err => { console.error(err) })
   }
 
   render() {

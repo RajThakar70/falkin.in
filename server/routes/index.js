@@ -46,14 +46,7 @@ router.get('/api/data', (req, res) => {
   var username = req.query.username
   if(req.session.passport) {
     Counter.find({username: username, device: req.query.device}, 'in out time', (err, data) => {
-      if(err) {
-        console.log(err);
-        res.json({ err })
-      }
-      else {
-        console.log(data);
-        res.json({ data })
-      }
+      err ? res.json({ err }) : res.json({ data })
     })
   } else {
     res.status(401).send()

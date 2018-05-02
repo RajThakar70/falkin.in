@@ -5,7 +5,6 @@ import { Grid, Container } from 'semantic-ui-react';
 export default class CardContainer extends Component{
 
   render(){
-    console.log('data in cardcont', this.props.data);
     return(
       <Container fluid>
         <Grid centered relaxed divided='vertically'>

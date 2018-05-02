@@ -8,29 +8,39 @@ export default class Dashboard extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      graphData: {}
+      graphData: {
+        okay: 'lul'
+      }
     }
-    const username = this.props.location.state.username
-        , device = this.props.location.state.device
+  }
+
+  componentDidMount() {
     axios
-      .get('/api/data?username='+username+'&device='+device)
+      .get('/api/data?username='+this.props.location.state.username+'&device='+this.props.location.state.device)
       .then(res => {
-        console.log(res.status);
-        if(res.data.err)
-          console.log(res.data.err);
-        this.setState({
-          graphData: res.data.data
-        })
-        // console.log('typeof graphData', typeof this.state.graphData);
+        if (res.status != 401) {
+          if(res.err)
+            console.log('Error while retrieving: ', res.err)
+          else {
+            this.setState({
+              graphData: res.data.data
+            })
+          }
+        } else {
+          console.log('Unauthorized!');
+        }
       })
   }
 
   render() {
-    console.log('graphData in dash index', this.state.graphData);
-    return (
-        <Segment inverted vertical>
-          <CardContainer data={this.state.graphData}/>
-        </Segment>
-    )
+    if ('okay' in this.state.graphData)
+      return null
+    else {
+      return (
+          <Segment inverted vertical>
+            <CardContainer data={this.state.graphData}/>
+          </Segment>
+      )
+    }
   }
 }
