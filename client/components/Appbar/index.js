@@ -16,6 +16,7 @@ import {
 } from 'semantic-ui-react';
 import DesktopContainer from './DesktopContainer';
 import MobileContainer from './MobileContainer';
+import './index.css'
 
 
 export default class Appbar extends Component{

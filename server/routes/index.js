@@ -22,6 +22,11 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.send('logged in')
 })
 
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.send('logged out')
+})
+
 router.post('/api/contact', (req, res) => {
   contact(req.body.data)
 })
