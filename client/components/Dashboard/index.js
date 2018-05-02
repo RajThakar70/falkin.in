@@ -14,7 +14,7 @@ export default class Dashboard extends Component{
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios
       .get('/api/data?username='+this.props.location.state.username+'&device='+this.props.location.state.device)
       .then(res => {
