@@ -11,12 +11,12 @@ const transporter = nodemailer.createTransport({
 })
 
 const formSubmission = (data) => {
-  let data = JSON.parse(data),
+  let formData = JSON.parse(data),
       mailOptions = {
         from: 'Aditya <adithya7dhoni@gmail.com>',
         to: 'Adithya <adithyapsv@gmail.com>',
         subject: 'Contact Mail',
-        text: 'Name: '+data.name+'\nE-mail: '+data.email+'\nOrganisation: '+data.organisation+'\nSubject: '+data.message
+        text: 'Name: '+formData.name+'\nE-mail: '+formData.email+'\nOrganisation: '+formData.organisation+'\nSubject: '+formData.message
       }
   transporter.sendMail(mailOptions, (error, response) => {
       error ? console.log(error) : console.log('Message sent')

@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const passport = require('passport')
 
+const contact = require('../contact')
 const Users = require('../models/users')
 const Counter = require('../models/counter')
 

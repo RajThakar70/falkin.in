@@ -39,6 +39,7 @@ export default class Contact extends Component{
       this.setState({
         [event.target.name]: event.target.value
       })
+      console.log(this.state[event.target.name]);
     }
 
     handleEmailChange = (event) => {
@@ -52,13 +53,13 @@ export default class Contact extends Component{
     }
 
     disableSubmit = () => {
-      // console.log('validateForm: ', this.validateForm());
+      console.log('validateForm: ', this.validateForm());
       this.validateForm() ? this.setState({ disableSubmit: false }) : this.setState({ disableSubmit: true })
-      // console.log(this.state.name.length);
-      // console.log(this.state.email.length);
-      // console.log(this.state.organisation.length);
-      // console.log(this.state.organisation.length);
-      // console.log(this.state.validEmail);
+      console.log(this.state.name.length);
+      console.log(this.state.email.length);
+      console.log(this.state.organisation.length);
+      console.log(this.state.message.length);
+      console.log(this.state.validEmail);
       // return !(this.state.name.length > 0 && this.state.email.length > 0 && this.state.organisation.length > 0 && this.state.message.length > 0)
     }
 
@@ -82,7 +83,7 @@ export default class Contact extends Component{
           return false
       }
       return (
-        <Segment>
+        <Segment vertical>
           <Grid centered>
             <Grid.Row>
               <Grid.Column mobile={10} tablet={8} computer={6}>

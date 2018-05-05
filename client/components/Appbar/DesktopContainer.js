@@ -16,7 +16,6 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { HomepageHeading } from './HomepageHeading';
-import './index.css'
 
 export default class DesktopContainer extends Component {
   state = { activeItem: window.location.pathname}

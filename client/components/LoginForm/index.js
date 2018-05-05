@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Grid, Container, Segment, Message } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import '../../assets/css/index.css'
 
 export default class LoginForm extends Component{
 
@@ -37,22 +38,27 @@ export default class LoginForm extends Component{
     console.log("in"+this.props.isUserLogin);
 
     return(
-      <Segment vertical inverted>
-        {this.props.isUserLogin?
-          (<Redirect from='/login' to='/devices'/>):
-          (<Grid centered>
-            <Grid.Row>
-              <Grid.Column mobile={10} tablet={8} computer={6}>
-                <Form onSubmit={(e) => this.handleSubmit(e)} inverted>
-                  {/* <Form.Input type='hidden' name='_csrf'/> */}
-                  <Form.Input name="username" icon="user" value={this.state.username} onChange={this.handleChange} iconPosition="left" fluid label='User Name' placeholder='User Name' />
-                  <Form.Input name="password" icon='lock' value={this.state.password} onChange={this.handleChange} iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
-                  <Button type='submit' floated='right' inverted fluid color='green'>Login</Button>
-                </Form>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>)}
-      </Segment>
+      <div className='login'>
+        <div className="login-body">
+          {/* <Segment vertical> */}
+            {this.props.isUserLogin?
+              (<Redirect from='/login' to='/devices'/>):
+              (<Grid centered>
+                <Grid.Row>
+                  <Grid.Column mobile={10} tablet={8} computer={6}>
+                    <Form onSubmit={(e) => this.handleSubmit(e)} inverted>
+                      {/* <Form.Input type='hidden' name='_csrf'/> */}
+                      <Form.Input name="username" icon="user" value={this.state.username} onChange={this.handleChange} iconPosition="left" fluid label='User Name' placeholder='User Name' />
+                      <Form.Input name="password" icon='lock' value={this.state.password} onChange={this.handleChange} iconPosition='left' fluid label='Password' type="password" placeholder='Password' />
+                      <Button type='submit' floated='right' inverted fluid color='green'>Login</Button>
+                    </Form>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>)}
+          {/* </Segment> */}
+          {/* <div className='push-login'></div> */}
+        </div>
+      </div>
     )
   }
 }

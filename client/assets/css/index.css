@@ -1,7 +1,65 @@
-.DesktopMenu {
-  font-family: sans-serif;
-  color: #556D93;
+.login {
+  display: flex;
+  min-height: 55vh;
+  flex-direction: column;
 }
-.active, .DesktopMenu:hover {
-  background-color: #556D93;
+
+.login-body {
+  flex: 1;
 }
+
+.devices {
+  display: flex;
+  min-height: 55vh;
+  flex-direction: column;
+}
+
+.devices-body {
+  flex: 1;
+}
+
+.push-devices-down {
+  min-height: 20vh;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.dashboard-body {
+  flex: 1;
+}
+
+/*.footer {
+  flex-shrink: 0;
+}*/
+/*.login {
+  height: 100%;
+}*/
+/*
+.login-body {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -200px;
+}
+
+.push-login {
+  min-height: calc(100vh - 300px);
+}
+
+.push-devices-down {
+  height: 50px;
+}
+.devices {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -100px;
+}
+
+.push-devices-footer-down {
+  min-height: calc(100vh - 350px);
+}*/

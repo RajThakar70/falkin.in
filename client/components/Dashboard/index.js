@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import { Segment } from 'semantic-ui-react'
+import { Dimmer, Loader, Segment } from 'semantic-ui-react'
 import CardContainer from './CardContainer'
 import axios from 'axios'
+import '../../assets/css/index.css'
 
 export default class Dashboard extends Component{
 
@@ -10,11 +11,12 @@ export default class Dashboard extends Component{
     this.state = {
       graphData: {
         okay: 'lul'
-      }
+      },
+      loader: true
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get('/api/data?username='+this.props.location.state.username+'&device='+this.props.location.state.device)
       .then(res => {
@@ -23,7 +25,8 @@ export default class Dashboard extends Component{
             console.log('Error while retrieving: ', res.err)
           else {
             this.setState({
-              graphData: res.data.data
+              graphData: res.data.data,
+              loader: false
             })
           }
         } else {
@@ -33,13 +36,32 @@ export default class Dashboard extends Component{
   }
 
   render() {
-    if ('okay' in this.state.graphData)
-      return null
-    else {
+    if ('okay' in this.state.graphData) {
+      var loader = this.state.loader
       return (
-          <Segment inverted vertical>
-            <CardContainer data={this.state.graphData}/>
-          </Segment>
+        <div className='dashboard'>
+          <div className='dashboard-body'>
+            <Dimmer active={loader}>
+              <Loader>Loading</Loader>
+            </Dimmer>
+          </div>
+        </div>
+      )
+    }
+    else {
+      var loader = this.state.loader
+      console.log(loader);
+      return (
+        <div className='dashboard'>
+          <div className='dashboard-body'>
+            <Dimmer active={loader}>
+              <Loader>Loading</Loader>
+            </Dimmer>
+            <Segment inverted vertical>
+              <CardContainer data={this.state.graphData}/>
+            </Segment>
+          </div>
+        </div>
       )
     }
   }
