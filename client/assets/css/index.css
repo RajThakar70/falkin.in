@@ -22,6 +22,10 @@
   min-height: 20vh;
 }
 
+.logout {
+  padding-top: 5%;
+}
+
 .dashboard {
   display: flex;
   min-height: 100vh;

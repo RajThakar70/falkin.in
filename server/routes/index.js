@@ -24,8 +24,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.logout()
-  res.send('logged out')
+  req.session.destroy( (err) => { res.send('logged out') })
 })
 
 router.post('/api/contact', (req, res) => {
@@ -33,12 +32,13 @@ router.post('/api/contact', (req, res) => {
 })
 
 router.get('/api/devices', (req, res) => {
+  console.log(req.session.passport);
   if(req.session.passport) {
     Users.findById(req.session.passport.user, 'username devices', (err, data) => {
       err ? res.json({ err }) : res.json({ data })
     })
   } else {
-    res.status(401).send()
+    res.send({ status: 401 })
   }
 })
 
@@ -50,7 +50,7 @@ router.get('/api/data', (req, res) => {
       err ? res.json({ err }) : res.json({ data })
     })
   } else {
-    res.status(401).send()
+    res.send({ status: 401 })
   }
 })
 
